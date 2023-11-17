@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AsideComponent } from './aside.component';
+import { FileModule } from '../file/file.module';
 
 const routes: Routes = [];
 
@@ -13,7 +14,8 @@ const routes: Routes = [];
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FileModule
   ],
   exports: [
     AsideComponent

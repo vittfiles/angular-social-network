@@ -1,0 +1,24 @@
+<!-- <main class="w-[calc(100%-5rem)] flex content-start pb-6"> -->
+    <div class="w-full sm:w-3/4 pr-2 pl-2">
+        <h1 class="p-2 w-full max-w-xl mx-auto border-b-4 border-b-purple border-r-greenl border-r-4 text-center mt-4 text-2xl text-purple">Images</h1>
+        <section class="w-full justify-start items-start grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-4 my-5 grid-flow-row-dense">
+            <!-- <a routerLink={{"/images/show-images"+img.id}} class="relative p-5 <%= img.type === 1 ? 'aspect-square': '' %> <%= img.type === 0 ? 'row-span-2 aspect-[1/2]': '' %> <%= img.type === 2 ? 'col-span-2 aspect-[2/1]' : '' %>"> -->
+            <a *ngFor="let img of (images$ | async)" 
+            [routerLink]="'/images/show-image/'+img?._id" 
+            [class]="{
+                'relative': true,
+                'p-5': true,
+                'aspect-square': img.type === 1,
+                'row-span-2': img.type === 0,
+                'aspect-[1/2]': img.type === 0,
+                'col-span-2': img.type === 2,
+                'aspect-[2/1]': img.type === 2,
+            }" >
+                <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
+                <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0"></div>
+                <img *ngIf="!img.local" [src]="'/assets/files/'+ img.filename + '-medium.webp'" class="w-full h-full roundend-sm object-cover">
+            </a>
+        </section>
+    </div>
+    <app-aside></app-aside>
+<!-- </main> -->

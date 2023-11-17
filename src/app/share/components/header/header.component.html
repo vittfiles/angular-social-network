@@ -7,33 +7,7 @@
         </div>
     </a>
     <hr class="mt-4 h-1 bg-whited">
-    <a routerLink="users" class="w-16 sm:w-full relative group/ic">
-        <i class="fa fa-user-o p-3 font-bold text-4xl text-purple absolute inset-x-[15px] inset-y-[10px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-user-o p-3 font-bold text-4xl text-pastel absolute inset-x-[10px] inset-y-[5px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-user-o p-3 font-bold text-4xl text-whited relative" aria-hidden="true"></i>
-        <div class="absolute sm:left-[90px] top-[80px] sm:top-0 border-4 border-purple text-purple font-bold transition-all group-hover/ic:block  scale-0 group-hover/ic:scale-100 transition-all">
-            <div class="absolute w-full h-full border-4 border-greenl left-[-15px] top-[15px] z-[0] scale-0 group-hover/ic:scale-100 transition-all delay-100"></div>
-            <p class="relative w-full bg-white h-full z-[1] p-2">{{'User'}}</p>
-        </div>
-    </a>
-    
-    <a routerLink="images" class="w-16 sm:w-full relative group/ic">
-        <i class="fa fa-picture-o p-3 font-bold text-4xl text-purple absolute inset-x-[15px] inset-y-[10px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-picture-o p-3 font-bold text-4xl text-pastel absolute inset-x-[10px] inset-y-[5px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-picture-o p-3 font-bold text-4xl text-whited relative" aria-hidden="true"></i>
-        <div class="absolute sm:left-[90px] top-[80px] sm:top-0 border-4 border-purple text-purple font-bold transition-all group-hover/ic:block  scale-0 group-hover/ic:scale-100 transition-all">
-            <div class="absolute w-full h-full border-4 border-greenl left-[-15px] top-[15px] z-[0] scale-0 group-hover/ic:scale-100 transition-all delay-100"></div>
-            <p class="relative w-full bg-white h-full z-[1] p-2">{{'Pictures'}}</p>
-        </div>
-    </a> 
-    
-    <a routerLink="images/upload-image" class="w-16 sm:w-full relative group/ic">
-        <i class="fa fa-upload p-3 font-bold text-4xl text-purple absolute inset-x-[15px] inset-y-[10px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-upload p-3 font-bold text-4xl text-pastel absolute inset-x-[10px] inset-y-[5px] group-hover/ic:inset-[0px] transition-all" aria-hidden="true"></i>
-        <i class="fa fa-upload p-3 font-bold text-4xl text-whited relative" aria-hidden="true"></i>
-        <div class="absolute sm:left-[90px] top-[80px] sm:top-0 border-4 border-purple text-purple font-bold transition-all group-hover/ic:block  scale-0 group-hover/ic:scale-100 transition-all">
-            <div class="absolute w-full h-full border-4 border-greenl left-[-15px] top-[15px] z-[0] scale-0 group-hover/ic:scale-100 transition-all delay-100"></div>
-            <p class="relative w-full bg-white h-full z-[1] p-2">{{'Upload image'}}</p>
-        </div>
-    </a>
+    <app-link-header routerLink="users" [title]="'User'" [icon]="'fa fa-user-o'"></app-link-header>
+    <app-link-header routerLink="images" [title]="'Pictures'" [icon]="'fa fa-picture-o'"></app-link-header>
+    <app-link-header routerLink="images/upload-image" [title]="'Upload image'" [icon]="'fa fa-upload'"></app-link-header>
  <!--  </header> -->

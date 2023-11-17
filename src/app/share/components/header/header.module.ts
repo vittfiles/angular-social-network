@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
+import { LinkHeaderModule } from '../link-header/link-header.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    LinkHeaderModule
   ],
   exports: [
     HeaderComponent

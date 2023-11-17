@@ -1,0 +1,10 @@
+<section *ngIf="comments.length > 0" class="w-full relative bg-white border-l-4 border-greenl p-4">
+    <div class=" border-purple border-4 border-dashed py-2">
+        <article *ngFor="let comm of comments" class="border-purple border-b-4 border-dashed px-1 py-2 last:border-b-0 text-left">
+            <p class="pl-1 text-gray-500">
+                <span class="pr-1 inline text-purple">{{comm.user}} ({{timeAgo(comm.timestamp)}}) : </span>
+                {{comm.content}}
+            </p>
+        </article>
+    </div>
+</section>

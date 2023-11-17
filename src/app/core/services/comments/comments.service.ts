@@ -83,4 +83,11 @@ export class CommentsService {
     result = result.sort((a,b)=> (new Date(a.timestamp) > new Date(b.timestamp))? 1 : -1).slice(0,6);
     return of(result);
   }
+  getByImageId(id: string): Observable<Comment[]>{
+    let result: Comment[] = [...this.comments];
+    result = result.filter(comm=> comm.image_id === id);
+    result = result.sort((a,b)=> (new Date(a.timestamp) < new Date(b.timestamp))? 1 : -1);
+    return of(result);
+  }
+
 }

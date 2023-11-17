@@ -38,20 +38,7 @@
                 </button>
                 <div id="block-form" class="absolute w-full h-full bg-transparent top-0 right-0 hidden"></div>
             </form>
-            <!-- <% if(comments.length > 0){ %>
-            <div class="w-full relative bg-white border-l-4 border-greenl p-4">
-                <div class=" border-purple border-4 border-dashed py-2">
-                    <% comments.forEach(com=>{ %>
-                    <article class="border-purple border-b-4 border-dashed px-1 py-2 last:border-b-0 text-left">
-                        <p class="pl-1 text-gray-500">
-                            <spam class="pr-1 inline text-purple"><%= com.user %> (<%= timeago(com.timestamp) %>) : </spam>
-                            <%= com.content %>
-                        </p>
-                    </article>
-                    <% }); %>
-                </div>
-            </div>
-            <% }; %> -->
+            <app-comment *ngIf="image" [image]="image"></app-comment>
         </section>
     </div>
     <app-aside></app-aside>

@@ -10,6 +10,7 @@ import { AsideModule } from '../../share/components/aside/aside.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '../../share/directives/drag-drop/drag-drop.module';
 import { ErrorModule } from '../../share/components/error/error.module';
+import { CommentModule } from '../../share/components/comment/comment.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ErrorModule } from '../../share/components/error/error.module';
     AsideModule,
     ReactiveFormsModule,
     DragDropModule,
-    ErrorModule
+    ErrorModule,
+    CommentModule
   ]
 })
 export class ImagesModule { }

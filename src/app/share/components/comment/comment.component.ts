@@ -16,6 +16,7 @@ export class CommentComponent implements OnChanges, OnDestroy{
   @Input() image?: Image;
   commentsSubscription?: Subscription;
   comments: Comment[] = [];
+  dates: string[] = [];
 
   constructor(public commService: CommentsService){}
 
@@ -25,7 +26,15 @@ export class CommentComponent implements OnChanges, OnDestroy{
     if(this.image)
     this.commentsSubscription = this.commService.getByImageId(this.image._id).subscribe(comm => {
       this.comments = comm;
+      this.dates = [];
+      this.comments.forEach(c=>this.dates.push(this.timeAgo(c.timestamp)));
     });
+  }
+
+  addComment(c: Comment){
+    this.comments.push(c);
+    this.dates = [];
+    this.comments.forEach(c=>this.dates.push(this.timeAgo(c.timestamp)));
   }
   
   timeAgo(date: any): string{

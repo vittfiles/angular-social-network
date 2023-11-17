@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Image } from '../../../../core/models/image';
-import { Comment } from '../../../../core/models/Comment';
 import { ImagesService } from '../../../../core/services/images/images.service';
 import { Subscription, mergeMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { CommentsService } from '../../../../core/services/comments/comments.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommentComponent } from '../../../../share/components/comment/comment.component';
 
 @Component({
   selector: 'app-show-image',
@@ -17,12 +18,43 @@ import { CommentsService } from '../../../../core/services/comments/comments.ser
 export class ShowImageComponent implements OnInit, OnDestroy{
   image?: Image;
   imageSubscription?: Subscription;
-  comments: Comment[] = [];
+  @ViewChild('commentSection') private comments?: CommentComponent;
+
+  errors:string[] = [];
+  formUser: FormGroup = this.fb.group({
+    content: ['',Validators.required]
+  });
+
+  submit(){
+    this.errors = [];
+    if(this.formUser.valid && this.image){
+      this.comments?.addComment({
+        user_id: "",
+        image_id: this.image._id,
+        image_user_id: this.image.user_id,
+        content: this.formUser.get('content')?.value,
+        user: "San Martín",
+        filename: this.image.filename,
+        fileext: '',
+        timestamp: (new Date()).toUTCString(),
+        __v: 0,
+        local: this.image.local
+      });
+    }else{
+      this.errors.push("Add a comment to send it");
+    }
+  }
+
+  close(i: number){
+    console.log("cerrar")
+    this.errors = this.errors.filter((err,index) => index !== i );
+  }
 
   constructor(
     public imgService: ImagesService,
     public commService: CommentsService, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ){}
   
   ngOnInit(): void {
@@ -31,51 +63,7 @@ export class ShowImageComponent implements OnInit, OnDestroy{
     ).subscribe(img=>{
       this.image = img;
     });
-    /* this.imageSubscription = this.route.params.pipe(
-      mergeMap(params => this.imgService.getImage(params['id'])),
-      mergeMap(img=>{
-        this.image = img;
-        return this.commService.getByImageId(img._id);
-      })
-    ).subscribe(comments => {
-      this.comments = comments;
-    }); */
   }
-  
-/*   timeAgo(date: any): string{
-    let d: number = (new Date(date)) as any;
-    let now: number = (new Date()) as any;
-    const seconds = Math.floor((now - d) / 1000);
-  
-    let interval = Math.floor(seconds / 31536000);
-    if (interval > 1) {
-      return interval + ' years ago';
-    }
-  
-    interval = Math.floor(seconds / 2592000);
-    if (interval > 1) {
-      return interval + ' months ago';
-    }
-  
-    interval = Math.floor(seconds / 86400);
-    if (interval > 1) {
-      return interval + ' days ago';
-    }
-  
-    interval = Math.floor(seconds / 3600);
-    if (interval > 1) {
-      return interval + ' hours ago';
-    }
-  
-    interval = Math.floor(seconds / 60);
-    if (interval > 1) {
-      return interval + ' minutes ago';
-    }
-  
-    if(seconds < 10) return 'just now';
-  
-    return Math.floor(seconds) + ' seconds ago';
-  } */
     
   ngOnDestroy(): void {
     if(this.imageSubscription)

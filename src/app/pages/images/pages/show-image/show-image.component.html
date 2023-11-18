@@ -6,7 +6,7 @@
         <section *ngIf="image" class="relative w-full max-w-xl my-4 p-5 mx-auto text-center bg-gray-100 bg-clip-content">
             <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
             <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0"></div>
-            <img *ngIf="!image.local" [src]="'/assets/files/'+ image.filename + '.webp'"  class="max-w-full rounded-sm mx-auto">
+            <img *ngIf="!image.local" [src]="'assets/files/'+ image.filename + '.webp'"  class="max-w-full rounded-sm mx-auto">
             <img *ngIf="image.local" [src]="image.filename"  class="max-w-full rounded-sm mx-auto">
         </section>
         <section class="relative w-full max-w-xl my-4 pb-5 pr-5 mx-auto text-center">

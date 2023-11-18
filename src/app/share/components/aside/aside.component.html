@@ -3,7 +3,7 @@
         <div class="relative w-full grid grid-cols-3  justify-start items-start gap-1  mb-3 p-2">
             <a *ngFor="let img of images" class="border-greenl border-b-4 border-r-4 border-r-purple" 
             [routerLink]="'/images/show-image/'+img?.id" >
-                <img *ngIf="!img.local" [src]="'/assets/files/'+img.filename+'-thumbnail.webp'" class="aspect-square w-full h-full object-cover">
+                <img *ngIf="!img.local" [src]="'assets/files/'+img.filename+'-thumbnail.webp'" class="aspect-square w-full h-full object-cover">
                 <img *ngIf="img.local" [src]="img.filename" class="aspect-square w-full h-full object-cover">
             </a>
         </div>

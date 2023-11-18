@@ -13,7 +13,7 @@
             <a *ngFor="let comm of comments" 
             class="flex items-center w-full" 
             [routerLink]="'/images/show-image/'+comm.image_id">
-                <img *ngIf="!comm.local" [src]="'/assets/files/'+comm.filename+'-thumbnail.webp'" class="aspect-square object-cover w-1/4 border-greenl border-b-4 border-r-4 border-r-purple">
+                <img *ngIf="!comm.local" [src]="'assets/files/'+comm.filename+'-thumbnail.webp'" class="aspect-square object-cover w-1/4 border-greenl border-b-4 border-r-4 border-r-purple">
                 <img *ngIf="comm.local" [src]="comm.filename" class="aspect-square object-cover w-1/4 border-greenl border-b-4 border-r-4 border-r-purple">
                 <div class="w-3/4 px-1 text-start">
                     <p class="inline text-purple">{{comm.user}} :</p>

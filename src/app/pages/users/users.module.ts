@@ -7,12 +7,14 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DragDropModule } from '../../share/directives/drag-drop/drag-drop.module';
 import { ErrorModule } from '../../share/components/error/error.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IndexUsersComponent } from './pages/index-users/index-users.component';
 
 
 @NgModule({
   declarations: [
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    IndexUsersComponent
   ],
   imports: [
     CommonModule,

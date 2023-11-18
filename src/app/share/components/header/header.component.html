@@ -6,8 +6,8 @@
             <p class="relative w-full bg-white h-full z-[1] p-2">{{'Home'}}</p>
         </div>
     </a>
-    <hr class="mt-4 h-1 bg-whited">
-    <app-link-header routerLink="users" [title]="'User'" [icon]="'fa fa-user-o'"></app-link-header>
-    <app-link-header routerLink="images" [title]="'Pictures'" [icon]="'fa fa-picture-o'"></app-link-header>
-    <app-link-header routerLink="images/upload-image" [title]="'Upload image'" [icon]="'fa fa-upload'"></app-link-header>
+    <hr *ngIf="login" class="mt-4 h-1 bg-whited">
+    <app-link-header *ngIf="login" routerLink="users" [title]="'User'" [icon]="'fa fa-user-o'"></app-link-header>
+    <app-link-header *ngIf="login" routerLink="images" [title]="'Pictures'" [icon]="'fa fa-picture-o'"></app-link-header>
+    <app-link-header *ngIf="login" routerLink="images/upload-image" [title]="'Upload image'" [icon]="'fa fa-upload'"></app-link-header>
  <!--  </header> -->

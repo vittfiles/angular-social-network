@@ -4,7 +4,7 @@
         <section class="w-full justify-start items-start grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-4 my-5 grid-flow-row-dense">
             <!-- <a routerLink={{"/images/show-images"+img.id}} class="relative p-5 <%= img.type === 1 ? 'aspect-square': '' %> <%= img.type === 0 ? 'row-span-2 aspect-[1/2]': '' %> <%= img.type === 2 ? 'col-span-2 aspect-[2/1]' : '' %>"> -->
             <a *ngFor="let img of (images$ | async)" 
-            [routerLink]="'/images/show-image/'+img?._id" 
+            [routerLink]="'/images/show-image/'+img?.id" 
             [class]="{
                 'relative': true,
                 'p-5': true,
@@ -13,10 +13,12 @@
                 'aspect-[1/2]': img.type === 0,
                 'col-span-2': img.type === 2,
                 'aspect-[2/1]': img.type === 2,
-            }" >
-                <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
+            }"
+            class="border-purple border-4 border-dashed" >
+                <!-- <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
                 <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0"></div>
-                <img *ngIf="!img.local" [src]="'/assets/files/'+ img.filename + '-medium.webp'" class="w-full h-full roundend-sm object-cover">
+                 --><img *ngIf="!img.local" [src]="'/assets/files/'+ img.filename + '-medium.webp'" class="w-full h-full roundend-sm object-cover">
+                <img *ngIf="img.local" [src]="img.filename" class="w-full h-full roundend-sm object-cover">
             </a>
         </section>
     </div>

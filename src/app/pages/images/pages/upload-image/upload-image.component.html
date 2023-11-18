@@ -12,14 +12,14 @@
                 <article class="w-full border-4 border-greenl p-2 mb-3 outline-none focus:border-purple cursor-pointer border-dashed" (click)="clickImgFile()" appDragDrop (files)="filesDropped($event)">
                     <p id="p-img" class="py-4 text-purple" [class.hidden]="!hidden">{{'Touch here or'}}<br>{{'Drag and drop an image'}}</p>
                     <input #imgFile class="hidden" type="file" formControlName="img-file" (change)="onChangeImgFile($event)">
-                    <img class="max-w-full mx-auto object-contain" [class.hidden]="hidden" [src]="src" alt="" id="img">
+                    <img #imgShow class="max-w-full mx-auto object-contain" [class.hidden]="hidden" [src]="src" alt="" id="img">
                 </article>
                 <textarea class="w-full border-4 border-greenl px-2 py-1 mb-3 outline-none focus:border-purple resize-none text-gray-500 " formControlName="description" cols="30" rows="5" placeholder="Description"></textarea>
-                <div id="button-submit" class="relative w-full">
+                <div [class.hidden]="loading" class="relative w-full">
                     <div class="absolute w-full h-full rounded-lg border-4 border-purple inset-x-[10px] inset-y-[5px]"></div>
                     <button type="submit" class="relative w-full bg-white rounded-lg border-4 border-greenl px-3 py-2 font-semibold text-greenl active:inset-x-[10px] active:inset-y-[5px]">{{'upload'}}</button>
                 </div>
-                <div id="button-loading" class="relative w-full hidden">
+                <div [class.hidden]="!loading" class="relative w-full">
                     <div class="absolute w-full h-full rounded-lg border-4 border-purple inset-x-[10px] inset-y-[5px]"></div>
                     <button type="submit" class="relative w-full bg-white rounded-lg border-4 border-greenl px-3 py-2 font-semibold text-greenl active:inset-x-[10px] active:inset-y-[5px]">
                         <svg aria-hidden="true" class="inline w-6 h-6 mr-2 text-purple animate-spin dark:text-purple fill-greenl" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { confirmPasswordValidator } from '../../../../core/util/my-validators/confirm-password.validator';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +27,12 @@ export class SignupComponent implements OnInit {
   get password1(){return this.formUser.get('password1') as FormControl;}
   get password2(){return this.formUser.get('password2') as FormControl;}
 
-  constructor(private fb: FormBuilder){}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ){}
+
   ngOnInit(): void {
     this.formUser.setValidators(confirmPasswordValidator());
   }
@@ -37,7 +44,23 @@ export class SignupComponent implements OnInit {
   upload(){
     this.errors = [];
     if(this.formUser.valid){
-      alert("upload")
+      this.auth.signup(
+        this.user.value as string,
+        this.email.value as string,
+        this.password1.value as string
+      ).subscribe({
+        next: (userData) => {
+          console.log(userData);
+        },
+        error: (errorData) => {
+          console.error(errorData);
+          this.errors.push("Error when try to connect");
+        },
+        complete: () => {
+          this.router.navigateByUrl('/');
+          this.formUser.reset();
+        }
+      });
     }else{
       if(this.user.errors?.['required'])
         this.errors.push("Add an user name");

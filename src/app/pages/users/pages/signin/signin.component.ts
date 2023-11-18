@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -20,7 +22,11 @@ export class SigninComponent {
   get email(){return this.formUser.get('email') as FormControl;}
   get password(){return this.formUser.get('password') as FormControl;}
 
-  constructor(private fb: FormBuilder){}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ){}
 
   close(i: number){
     this.errors = this.errors.filter((err,index) => index !== i );
@@ -29,7 +35,22 @@ export class SigninComponent {
   upload(){
     this.errors = [];
     if(this.formUser.valid){
-      alert("upload")
+      this.auth.login(
+        this.formUser.get('email')?.value as string,
+        this.formUser.get('password')?.value as string
+      ).subscribe({
+        next: (userData) => {
+          console.log(userData);
+        },
+        error: (errorData) => {
+          console.error(errorData);
+          this.errors.push("Error when try to connect");
+        },
+        complete: () => {
+          this.router.navigateByUrl('/');
+          this.formUser.reset();
+        }
+      });
     }else{
       if(this.email.errors?.['email']){
         this.errors.push("Email must be like user@example");

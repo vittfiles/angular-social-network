@@ -45,7 +45,7 @@ export class UploadImageComponent implements OnInit, OnDestroy {
 
   formUser = this.fb.group({
     title: ['', Validators.required],
-    'img-file': ['', Validators.required],
+    'img-file': [''],
     description: ['', Validators.required]
   });
   
@@ -70,7 +70,7 @@ export class UploadImageComponent implements OnInit, OnDestroy {
 
   upload(){
     this.errors = [];
-    if(this.formUser.valid){
+    if(this.formUser.valid && this.src){
       let w = this.imgShow?.nativeElement.clientWidth || 1;
       let h = this.imgShow?.nativeElement.clientHeight || 1;
       let aspect = w/h;
@@ -105,7 +105,7 @@ export class UploadImageComponent implements OnInit, OnDestroy {
     }else{
       if(this.title.invalid)
       this.errors.push("Add a title");
-      if(this.imgfile.invalid)
+      if(!this.src)
         this.errors.push("Add an image");
       if(this.description.invalid)
         this.errors.push("Add a description");

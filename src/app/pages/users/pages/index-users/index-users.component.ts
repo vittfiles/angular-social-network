@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ImagesService } from '../../../../core/services/images/images.service';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, mergeMap, takeUntil } from 'rxjs';
 import { User } from '../../../../core/models/User';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 
@@ -14,19 +14,15 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
   }
 })
 export class IndexUsersComponent implements OnInit, OnDestroy {
-  user: User = {user_name: "",email: ""};
   notifier = new Subject();
   
   alert: string = "";
   errors: string[]= [];
 
-  formUser = this.fb.group({
-    user_name: ['', Validators.required],
-    email: ['', [Validators.required,Validators.email]]
-  });
+  formUser?: FormGroup;
   
-  get user_name(){return this.formUser.get('user_name') as FormControl;}
-  get email(){return this.formUser.get('email') as FormControl;}
+  get user_name(){return this.formUser?.get('user_name') as FormControl;}
+  get email(){return this.formUser?.get('email') as FormControl;}
   
   close(i: number){
     this.errors = this.errors.filter((err,index) => index !== i );
@@ -34,7 +30,7 @@ export class IndexUsersComponent implements OnInit, OnDestroy {
 
   submit():void{
     this.errors = [];
-    if(this.formUser.valid){
+    if(this.formUser?.valid){
       this.auth.signup(
         this.user_name.value as string,
         this.email.value as string,
@@ -49,7 +45,6 @@ export class IndexUsersComponent implements OnInit, OnDestroy {
         },
         complete: () => {
           this.alert = "The data was updated";
-          this.formUser.reset();
         }
       });
     }else{
@@ -71,7 +66,14 @@ export class IndexUsersComponent implements OnInit, OnDestroy {
   ){}
 
   ngOnInit(): void {
-    this.auth.userData.pipe(takeUntil(this.notifier)).subscribe(res=>this.user);
+    this.auth.userData.pipe(
+      takeUntil(this.notifier)
+    ).subscribe(user=>{
+      this.formUser = this.fb.group({
+        user_name: [user.user_name, Validators.required],
+        email: [user.email, [Validators.required,Validators.email]]
+      });
+    });
   }
   
   ngOnDestroy(): void {

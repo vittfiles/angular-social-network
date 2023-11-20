@@ -22,7 +22,10 @@ const routes: Routes = [
 
 @NgModule({
   providers: [AuthGuardGuard],
-  imports: [RouterModule.forRoot(routes,{useHash: true})],
+  imports: [RouterModule.forRoot(routes,{
+    useHash: true,
+    scrollPositionRestoration: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -2,10 +2,10 @@
     <ng-container *ngFor="let err of errors; let i = index">
         <app-error [msg]="err" (close)="close(i)"></app-error>
     </ng-container>
-    <section class="relative max-w-sm bg-white px-8 pt-5 mx-auto mt-4 rounded-lg border-8 border-greenl">
-        <div class="absolute w-full h-full rounded-lg border-8 border-purple z-[-1]"></div>
-        <h2 class="pb-6 text-xl font-semibold text-greenl">{{'Account loggin'}}</h2>
-        <form [formGroup]="formUser" (ngSubmit)="upload()" class="pb-6">
+    <section class="animate-show relative max-w-sm bg-white px-8 pt-5 mx-auto mt-4 rounded-lg border-8 border-greenl">
+        <!-- <div class="animate-show-inv absolute w-full h-full rounded-lg border-8 border-purple z-[-1]"></div> -->
+        <h2 class="animate-show-inv pb-6 text-xl font-semibold text-greenl">{{'Account loggin'}}</h2>
+        <form [formGroup]="formUser" (ngSubmit)="upload()" class="animate-show-inv pb-6">
             <!-- <input id="CSRFToken" type="hidden" name="CSRFToken" value="<%= token %>"> -->
             <input class="w-full border-b-4 border-greenl px-2 py-1 mb-3 outline-none focus:border-purple" type="email" formControlName="email" placeholder="Email"/>
             <input class="w-full border-b-4 border-greenl px-2 py-1 mb-3 outline-none focus:border-purple" type="password" formControlName="password" placeholder="Password"/>

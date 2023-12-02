@@ -1,25 +1,25 @@
 <!-- <main class="w-[calc(100%-5rem)] flex content-start pb-6"> -->
     <div class="w-full px-2 sm:px-0 sm:w-3/4">
-        <h1 class="p-2 w-full max-w-xl mx-auto border-b-4 border-b-purple border-r-greenl border-r-4 text-center mt-4 text-2xl text-purple">
+        <h1 class="animate-show-inv p-2 w-full max-w-xl mx-auto border-b-4 border-b-purple border-r-greenl border-r-4 text-center mt-4 text-2xl text-purple">
             {{image?.title}}
         </h1>
-        <section *ngIf="image" class="relative w-full max-w-xl my-4 p-5 mx-auto text-center bg-gray-100 bg-clip-content">
+        <section *ngIf="image" class="animate-show relative w-full max-w-xl my-4 p-5 mx-auto text-center bg-gray-100 bg-clip-content">
             <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
             <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0"></div>
-            <img *ngIf="!image.local" [src]="'assets/files/'+ image.filename + '.webp'"  class="max-w-full rounded-sm mx-auto">
-            <img *ngIf="image.local" [src]="image.filename"  class="max-w-full rounded-sm mx-auto">
+            <img *ngIf="!image.local" [src]="'assets/files/'+ image.filename + '.webp'"  class="animate-show-inv max-w-full rounded-sm mx-auto">
+            <img *ngIf="image.local" [src]="image.filename"  class="animate-show-inv max-w-full rounded-sm mx-auto">
         </section>
-        <section class="relative w-full max-w-xl my-4 pb-5 pr-5 mx-auto text-center">
-            <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0 z-[-1]"></div>
-            <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0 "></div>
-            <div class="w-full rounded-sm bg-white p-5">
+        <section class="animate-show relative w-full max-w-xl my-4 pb-5 pr-5 mx-auto text-center">
+            <!-- <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0 z-[-1]"></div> -->
+            <div class="animate-show-inv absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0 "></div>
+            <div class="animate-show-inv w-full rounded-sm bg-white p-5">
                 <h2 class="text-purple text-xl text-left">{{image?.user_name}} : </h2>
                 <h2 class="text-greenl text-xl text-left">{{image?.description}}</h2>
             </div>
         </section>
-        <section class="relative w-full max-w-xl my-4 pb-5 pr-4 mx-auto text-center ">
+        <section class="animate-show relative w-full max-w-xl my-4 pb-5 pr-4 mx-auto text-center ">
             <!-- <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0 z-[-1]"></div> -->
-            <div class="relative w-full rounded-lg border-4 border-greenl top-0 left-0 ">
+            <div class="animate-show-inv relative w-full rounded-lg border-4 border-greenl top-0 left-0 ">
                 <div class="w-full rounded-sm bg-white p-5">
                     <h2 class="text-greenl text-xl border-b-4 border-greenl pb-2">Comments</h2>
                 </div>

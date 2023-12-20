@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "deploy": "ng deploy --base-href=/angular-social-network/",
+    "final-deploy": "npx angular-cli-ghpages --dir=dist/angular-social-network/browser",
     "test": "ng test"
   },
   "private": true,

@@ -14,7 +14,7 @@
                 'col-span-2': img.type === 2,
                 'aspect-[2/1]': img.type === 2,
             }"
-            class="border-purple border-4 border-dashed" >
+            class="border-purple border-4 border-dashed w-full h-full" >
                 <!-- <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-purple bottom-0 right-0"></div>
                 <div class="absolute w-[calc(100%-1rem)] h-[calc(100%-1rem)] rounded-lg border-4 border-greenl top-0 left-0"></div>
                  --><img *ngIf="!img.local" [src]="'assets/files/'+ img.filename + '-medium.webp'" class="w-full h-full roundend-sm object-cover">

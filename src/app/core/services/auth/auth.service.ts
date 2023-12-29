@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { JsonPipe } from '@angular/common';
 
 let userTest: User = {
   user_name: 'San Martin',
@@ -21,15 +22,26 @@ export class AuthService {
 
   constructor(private cookieService: CookieService) { }
 
+  initState(){
+    if(this.cookieService.get('session'))
+    this.currentUserLoginOn.next(true);
+  if(this.cookieService.get('sessionUser')){
+    let oldUser = JSON.parse(this.cookieService.get('sessionUser'));
+    this.user.next(oldUser);
+  }
+  }
+
   login(email: string,password: string): Observable<User>{
-    return of({
+    let newUser = {
       user_name: userTest.user_name,
       email: email
-    }).pipe(
+    }
+    return of(newUser).pipe(
       tap( (data: User) => {
         this.user.next(data);
         this.currentUserLoginOn.next(true);
-        this.cookieService.set('session', 'true');
+        this.cookieService.set('session', 'true', { expires: 1, sameSite: 'Lax' });
+        this.cookieService.set('sessionUser', JSON.stringify(newUser), { expires: 1, sameSite: 'Lax' });
       })
     );
   }
@@ -42,16 +54,19 @@ export class AuthService {
         }));
         this.currentUserLoginOn.next(false);
         this.cookieService.delete('session');
+        this.cookieService.delete('sessionUser');
       })
     )
   }
   
   signup(user_name: string,email: string,password: string): Observable<User>{
-    return of({ user_name, email: email }).pipe(
+    let newUser ={ user_name, email: email }
+    return of(newUser).pipe(
       tap( (data: User) => {
         this.user.next(data);
         this.currentUserLoginOn.next(true);
-        this.cookieService.set('session', 'true');
+        this.cookieService.set('session', 'true', { expires: 1, sameSite: 'Lax' });
+        this.cookieService.set('sessionUser', JSON.stringify(newUser), { expires: 1, sameSite: 'Lax' });
       })
     );
   }

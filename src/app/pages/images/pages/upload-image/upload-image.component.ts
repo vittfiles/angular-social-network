@@ -61,7 +61,7 @@ export class UploadImageComponent implements OnInit, OnDestroy {
   ){}
   
   ngOnInit(): void {
-    this.auth.userData.pipe(takeUntil(this.notifier)).subscribe(res=>this.user);
+    this.auth.userData.pipe(takeUntil(this.notifier)).subscribe(res=>this.user=res);
   }
 
   close(i: number){
